@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 m-auto">
+            <div class="card card-body">
+                <h3 class="text-center mb-3"><i class="fas fa-user-plus"></i> Register</h3>
+                {{>messages}}
+                <form method="POST" action="/users/register">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" class="form-control" id="name" {{#if name}}value="{{name}}"
+                            {{/if}} placeholder="Matti Meikäläinen" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
+                            {{#if email}}value="{{email}}" {{/if}} placeholder="user@example.com" required>
+                        <small id="emailHelp" class="form-text text-muted">Your email will not be delivered to
+                            third-parties.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="password"
+                            minlength="10" aria-describedby="passwordHelpBlock" required>
+                        <small id="passwordHelpBlock" class="form-text text-muted">At least 10 characters long
+                            password</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordConfirmation">Password confirmation</label>
+                        <input type="password" name="passwordConfirmation" class="form-control"
+                            id="passwordConfirmation" placeholder="password confirmation" minlength="10" required>
+                    </div>
+                    <button type="submit" id="btnRegister" class="btn btn-primary">Register</button>
+                </form>
+                <p class="lead mt-4">Already registered? <a href="/users/login">Login</a></p>
+            </div>
+        </div>
+    </div>
+</div>

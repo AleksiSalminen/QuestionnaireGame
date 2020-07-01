@@ -1,0 +1,29 @@
+{{#gt numOfPages 1}}
+<nav aria-label="pagination">
+    <ul class="pagination">
+        <li class="page-item disabled"><span class="page-link">Sivu {{pageNum}} / {{numOfPages}}</span></li>
+        {{#gt pageNum 1}}
+        <li class="page-item"><a class="page-link" href="{{pageUrl}}?page=1&limit={{pageSize}}">&laquo;</a></li>
+        <li class="page-item"><a class="page-link"
+                href="{{pageUrl}}?page={{subtract pageNum 1}}&limit={{pageSize}}">{{subtract pageNum 1}}</a></li>
+        {{/gt}}
+        <li class="page-item active" aria-current="page">
+            <span class="page-link">{{pageNum}}<span class="sr-only">(nykyinen)</span></span>
+        </li>
+        {{#lt pageNum numOfPages}}
+        <li class="page-item"><a class="page-link"
+                href="{{pageUrl}}?page={{add pageNum 1}}&limit={{pageSize}}">{{add pageNum 1}}</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="{{pageUrl}}?page={{numOfPages}}&limit={{pageSize}}">&raquo;</a>
+        </li>
+        {{/lt}}
+        <li class="page-item disabled"><a href="" class="page-link">Näytetään</a></li>
+        <li class="page-item{{#eq pageSize 25}} active{{/eq}}"><a href="{{pageUrl}}?page={{pageNum}}&limit=25"
+                class="page-link">25</a></li>
+        <li class="page-item{{#eq pageSize 50}} active{{/eq}}"><a href="{{pageUrl}}?page={{pageNum}}&limit=50"
+                class="page-link">50</a></li>
+        <li class="page-item{{#eq pageSize 100}} active{{/eq}}"><a href="{{pageUrl}}?page={{pageNum}}&limit=100"
+                class="page-link">100</a></li>
+    </ul>
+</nav>
+{{/gt}}

@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 m-auto">
+            <div class="card card-body">
+                <h1 class="title" >Quiz game</h>
+                <h3 class="title2">Select the questionnaire to play</h3>
+                <div class="btn-grid2">
+                    {{#each questionnaire_titles}}
+                    <button class="btn"><a href='/games/{{this.id}}'>{{this.title}}</button>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

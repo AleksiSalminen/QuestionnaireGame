@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 m-auto">
+            <div class="card card-body">
+                <h3 class="text-center mb-3"><i class="fas fa-user-edit"></i>Switch the role of the user</h3>
+                <h4 class="text-left mb-2">{{user.name}}</h4>
+                {{>messages}}
+                <form method="POST" action="/users/change-role/{{user.id}}">
+                    <div class="form-group">
+                        <label for="role">Role({{user.role}})</label>
+                        <select class="form-control" id="role" name="role" required>
+                            {{#each roles}}
+                            <option value="{{this.value}}" {{#eq this.value @root.user.role}}selected{{/eq}}>
+                                {{this.name}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+                <p class="lead mt-4"><a href="/users">Cancel</a></p>
+            </div>
+        </div>
+    </div>
+</div>

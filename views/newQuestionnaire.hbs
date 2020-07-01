@@ -1,0 +1,19 @@
+<script type="text/javascript" src="/public/js/questionnaireScript.js"></script>
+
+<script type="text/javascript">
+    var questionnaire = {{{ questionnaire }}}
+
+    document.addEventListener('readystatechange', () => {
+        if (document.readyState == 'complete') {
+            if(questionnaire) {
+                reform();
+            }
+            else {
+                addQuestion();
+            }
+        }
+    });
+</script>
+
+{{>messages}}
+{{>questionnaireForm}}

@@ -1,0 +1,23 @@
+<div class="container">
+    {{>messages}}
+    <div class="row mt-5">
+        <div class="col-md-6 m-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-questionnaire-times"></i> Remove Questionnaire:</h3>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{questionnaire.title}}</h3>
+                </div>
+                <div class="card-footer">
+                        <button type="button" onclick="deleteHelper('/questionnaires/delete/{{questionnaire._id}}', '{{csrfToken}}')" class="btn btn-primary"><i class="fas fa-questionnaire-times"></i>Remove</button>
+                    <p class="lead mt-4"><a href="/questionnaires/{{questionnaire._id}}">Cancel</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="_csrf" value="{{csrfToken}}">
+
+<script type="text/javascript" src="/public/js/deleteHelper.js"></script>

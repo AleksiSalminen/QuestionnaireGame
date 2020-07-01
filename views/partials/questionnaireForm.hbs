@@ -1,0 +1,52 @@
+
+<!-- QUESTIONNAIRE FORM -->
+<form id="questionnaireForm" class="card mt-3"
+{{#if edit}} action="/questionnaires/edit/{{id}}"
+{{else}} action="/questionnaires/new/"
+{{/if}} method="post">
+    <div class='card-header'>
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row"}>
+                    <label for="title">Title:&nbsp</label>
+                    <input clasS="col-10 form-control" id="title" type="text" name="questionnaire_title" value="" required>
+                </div>
+            </div>
+{{#if edit}}
+            <div class="col-8">
+                <div class="form-group row"}>
+                    <label for="oldTitle">Old title:&nbsp</label>
+                    <input clasS="col-10 form-control" id="oldTitle" type="text" name="oldTitle" value="{{oldTitle}}" readonly>
+                </div>
+            </div>
+{{/if}}
+            <div class="col-4">
+                <div class="form-group row">
+                    <label for="submissions">Submissions:&nbsp</label>
+                    <input class="col-6 form-control" id="submissions" type="number" name="submissions" value=1 min="1"
+                        max="99">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class='card'>
+
+        <label for="Questions">
+            <h3>Questions:</h3>
+        </label>
+
+        <!-- FORM QUESTIONS -->
+        <div class="form-group" id="Questions">
+        </div>
+    </div>
+
+    <div class='card-footer'>
+        <button id="submitBtn" type="submit">Submit</button>
+    </div>
+    <input type="hidden" name="_csrf" value={{csrfToken}}>
+</form>
+
+<button id="addQuestionBtn" type="button" onclick="addQuestion()">Add question</button>
+
+<a href='/questionnaires/{{id}}'>Back</a>

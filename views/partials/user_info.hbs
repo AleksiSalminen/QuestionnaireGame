@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title"><i class="fas fa-user"></i> {{this.name}}</h5>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{this.email}}</h5>
+        <p class="card-text">Role: {{this.role}}
+            {{#and (and @root.isAdmin (not @root.isProfile)) (not (eq @root.userId this.id))}}
+            <a href="/users/change-role/{{this.id}}">(change)</a>
+            {{/and}}
+        </p>
+    </div>
+    <div class="card-footer">
+        {{#and (and @root.isAdmin (not @root.isProfile)) (not (eq @root.userId this.id))}}
+        <a class="btn btn-primary" href="/users/delete/{{this.id}}"><i class="fas fa-user-times"></i>Remove</a>
+        {{else}}
+        <a class="btn btn-primary" href="/users/me/edit"><i class="fas fa-user-edit"></i>Change</a>
+        {{/and}}
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class=container>
+    <div class="row mt-5">
+        <div class="col-md-6 m-auto">
+            <div class="card card-body">
+                <h3>{{questionnaire.title}}</h3>
+                <ol class="questionList">
+                    {{#each questionnaire.questions}}
+                    <hr>
+                    <li>{{this.title}}</li> <p>max points: {{this.maxPoints}}</p>
+                      <ol class="questionList">
+                            {{#each this.options}}
+                                <li>{{this.option}}</li>
+                            {{/each}}
+                      </ol>
+                    {{/each}}
+                </ol>
+                <div class="buttons">
+                    <div class="flex-child">
+                        <form id="editForm" action="/questionnaires/edit/{{questionnaire._id}}" method="get">
+                            <button id="editBtn" class="btn" type="submit">Edit</button>
+                        </form>
+                    </div>
+                    <div class="flex-child">
+                        <form id="deleteForm" action="/questionnaires/delete/{{questionnaire._id}}" method="get">
+                            <button id="deleteBtn" class="btn" type="submit">Remove</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="back"><a href='/questionnaires'>Back</a></div>
+            </div>
+        </div>
+    </div>
+</div>

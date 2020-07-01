@@ -1,0 +1,13 @@
+{{#if users}}
+{{#withGroup users 3}}
+<div class="card-deck mt-3">
+    {{#each this as |user index|}}
+    {{>user_info user}}
+    {{/each}}
+</div>
+{{/withGroup}}
+{{else}}
+<div class="alert alert-danger">
+    <p>No users found.</p>
+</div>
+{{/if}}

@@ -1,0 +1,48 @@
+{{>messages}}
+<div class=container>
+    <div class="row mt-5">
+        <div class="col-md-6 m-auto">
+            <div class="card-header">
+              <label for="searchField">Search:&nbsp</label>
+              <input id="searchField" type="text" name="searchField" class="form-control">
+            </div>
+
+            <div class="card card-body">
+                <h2>Select the questionnaire to edit</h2>
+                <hr>
+                <ol id="titles">
+                    {{#each questionnaireTitles}}
+                        <li><a href='/questionnaires/{{this.id}}'>{{this.title}}</li>
+                    {{/each}}
+                </ol>
+            </div>
+
+            <div class="card-footer">
+               <button class="btn"><a href='/questionnaires/new'>Create new questionnaire</a></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',function() {
+    document.getElementById("searchField").onchange=check;
+},false);
+
+function check() {
+  let titles = document.getElementById("titles").getElementsByTagName("A");
+
+  for (let i = 0; i < titles.length; i++) {
+    let aText = titles[i].textContent.trim().toLowerCase();
+    let searchValue = document.getElementById("searchField").value.trim().toLowerCase();
+    if (aText !== "") {
+        if (aText.includes(searchValue)) {
+            titles[i].parentElement.setAttribute('style', 'display: list-item')
+        }
+        else {
+            titles[i].parentElement.setAttribute('style', 'display: none')
+        }
+      }
+  }
+}
+</script>

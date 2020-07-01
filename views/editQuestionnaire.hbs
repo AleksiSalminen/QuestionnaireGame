@@ -1,0 +1,14 @@
+<script type="text/javascript">
+    const QUESTIONNAIRE = {{{ questionnaire }}}
+
+    document.addEventListener('readystatechange', () => {
+        if (document.readyState == 'complete') { reform(QUESTIONNAIRE); }
+    });
+</script>
+
+
+<div id="AJAXErrorHelper" class="alert alert-danger" style="display: none"></div>
+{{>messages}}
+{{>questionnaireForm}}
+
+<script src="/public/js/questionnaireScript.js"></script>

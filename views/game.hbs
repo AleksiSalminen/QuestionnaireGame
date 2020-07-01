@@ -1,0 +1,140 @@
+<div class="container exercise">
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+        <div class="card card-body">
+            <h1 class="title">Quiz game</h1>
+            <div id="question-container" class="hide">
+                <div id="question" class="question">Question</div>
+                <div id="answer-buttons" class="btn-grid">
+                </div>
+            </div>
+            <div id="grading" class="grading hide">
+                Points:
+                <div id="points">0</div>/
+                <div id="maxpoints">0</div>
+            </div>
+            
+            <div class="controls">
+                <button id="start-btn" class="start-btn btn">Start</button>
+                <button id="next-btn" class="next-btn btn hide">Next</button>
+                <form method="POST">
+                    <button id="grade" name="grade" type="submit" value="" class="grade-btn btn hide">Grade</button>
+                </form>
+            </div>
+            <script type ="text/javascript">
+
+            const startButton = document.getElementById('start-btn');
+            const nextButton = document.getElementById('next-btn');
+            const gradeButton = document.getElementById('grade');
+            const questionContainerElement = document.getElementById('question-container');
+            const questionElement = document.getElementById('question');
+            const answerButtonsElement = document.getElementById('answer-buttons');
+            const gradingElement = document.getElementById('grading');
+            const pointsElement = document.getElementById('points');
+            const maxpointsElement = document.getElementById('maxpoints');
+            
+            //Questionnaire from controller
+            let questionnaire = {{{questionnaire}}};
+            let questions = questionnaire.questions;
+
+            let currentQuestionIndex, points, maxpoints, click, maxClicks;
+            
+            startButton.addEventListener('click', startGame);
+            
+            nextButton.addEventListener('click', () => {
+                currentQuestionIndex++;
+                setNextQuestion()
+            })
+            //Start game function
+            function startGame() {
+                startButton.classList.add('hide');
+                gradeButton.classList.add('hide');
+                gradingElement.classList.remove('hide');
+                currentQuestionIndex = 0;
+                points = 0;
+                maxpoints = 0;
+                    
+                questionContainerElement.classList.remove('hide');
+                setNextQuestion()
+            }
+
+            function setNextQuestion() {
+                resetState()
+                showQuestion(questions[currentQuestionIndex])
+            }
+            //Shows the questin and creates buttons for its options
+            function showQuestion(question) {
+                questionElement.innerText = question.title;
+                click = 0;
+                maxClicks = question.maxPoints;
+                question.options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.innerText = option.option;
+                    button.classList.add('btn');
+                    if (option.correctness) {
+                        button.dataset.correct = option.correctness;
+                    }
+                    button.addEventListener('click', selectAnswer);
+                    answerButtonsElement.appendChild(button);
+                })
+            }
+            //Resets the question element
+            function resetState() {
+                nextButton.classList.add('hide');
+                while (answerButtonsElement.firstChild) {
+                    answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+                }
+            }
+
+            //Checks if selected option is correct and
+            function selectAnswer(e) {
+                const selectedButton = e.target;
+                if (click != maxClicks && selectedButton.classList.contains('clicked') === false) {                  
+                    const correct = selectedButton.dataset.correct;
+                    setPoints(correct);
+                    click += 1;
+                    selectedButton.classList.add('clicked');
+                    //If as many clicks as correct answers
+                    if (click == maxClicks) {
+                        Array.from(answerButtonsElement.children).forEach(button => {
+                            setStatusClass(button, button.dataset.correct);
+                        })
+                        pointsElement.innerText = points;
+                        maxpointsElement.innerText = maxpoints;
+                        if (questions.length > currentQuestionIndex + 1) {
+                            nextButton.classList.remove('hide');
+                        } else {
+                            gradeButton.classList.remove('hide');
+                            gradeButton.value = points + "/" + maxpoints;
+                        }
+                    }
+                }
+            }
+            //Adds maxpoints by 1 and points if correct
+            function setPoints(correct) {
+                maxpoints++;
+                if (correct) {
+                    points++;
+                }
+            }
+
+            //Sets classes for option buttons to styling
+            function setStatusClass(element, correct) {
+                clearStatusClass(element);
+                if (correct) {
+                    element.classList.add('correct');
+                } else {
+                    element.classList.add('wrong');
+                }
+            }
+
+            function clearStatusClass(element) {
+                element.classList.remove('correct');
+                element.classList.remove('wrong');
+            }
+            </script>
+
+        </div>
+    </div>
+</div>
+</div>

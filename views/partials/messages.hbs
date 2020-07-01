@@ -1,0 +1,17 @@
+{{#if errors}}
+{{#forOwn errors}}
+<div class="alert alert-warning">{{.}}</div>
+{{/forOwn}}
+{{/if}}
+{{#if successMessage}}
+<div class="alert alert-success">{{successMessage}}</div>
+{{/if}}
+{{#if errorMessage}}
+<div class="alert alert-danger">{{errorMessage}}</div>
+{{/if}}
+{{#if error}}
+<div class="alert alert-danger">{{first error}}</div>
+{{/if}}
+{{#if success}}
+<div class="alert alert-success">{{first success}}</div>
+{{/if}}

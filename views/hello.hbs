@@ -1,0 +1,22 @@
+<div id="exercise" class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 m-auto">
+            <div class="card card-body">
+                {{>messages}}
+                <h3 id="title" class="text-center mb-3">My first exercise</h3>
+                <h4 class="instructions text-left mb-2">Instructions</h4>
+                <p>
+                    Type in anything containing strings 'Hello' and 'A+'. This exercise
+                    is case insensitive. You get one point for each string.
+                </p>
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="answer">Type your answer in here:</label>
+                        <textarea class="form-control" name="answer" id="answer" rows="3" required></textarea>
+                    </div>
+                    <button id="grade" type="submit" class="btn btn-primary">Grade</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
