@@ -1,0 +1,21 @@
+{
+    "mongo": {
+        "host": "localhost",
+        "port": "27017",
+        "db": "bwa"
+    },
+    "session": {
+        "name": "bwa",
+        "resave": false,
+        "rolling": true,
+        "saveUninitialized": false,
+        "unset": "destroy",
+        "cookie": {
+            "httpOnly": true,
+            "maxAge": 3600000,
+            "path": "/",
+            "sameSite": "lax",
+            "secure": false
+        }
+    }
+}
