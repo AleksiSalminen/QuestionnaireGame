@@ -1,7 +1,9 @@
 # Questionnaire Game
 
 The application gamifies multi-choice questionnaire.
+
 The project consists of three parts: the game, management view, and testing/documentation.
+
 The application was made by three people, as a programming course's project work.
 
 ## Game
