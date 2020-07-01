@@ -1,0 +1,23 @@
+{
+    "restartable": "rs",
+    "watch": [
+        ".",
+        "models",
+        "controllers",
+        "views",
+        "routes",
+        "middleware",
+        "lib",
+        "config",
+        "setup"
+    ],
+    "ignore": ["public", "vagrant", "test", "frontend", "node_modules"],
+    "legacyWatch": true,
+    "pollingInterval": 1000,
+    "verbose": true,
+    "delay": "3000",
+    "env": {
+        "NODE_ENV": "development",
+        "DEBUG": "bwa:*"
+    }
+}
